@@ -1,6 +1,6 @@
 # class-diary-backend
 
-Esse projeto esta sendo desenvolvido por Lucas Martins Venero, Gustavo Chavez, Guilherme Melato, Michael Varaldo e Filipe Ourlamunder
+Esse projeto esta sendo desenvolvido por Lucas Martins Venero, Gustavo Chaves, Guilherme Melato, Michael Varaldo e Filipe Ourlamunder
 
 ## Instruções de Instalação
 
