@@ -1,4 +1,3 @@
-// src/models/student.js
 const { DataTypes } = require("sequelize");
 const sequelize = require("../database");
 
