@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../database");
 
-const Student = sequelize.define(
-  "Student",
+const Room = sequelize.define(
+  "Room",
   {
     name: {
       type: DataTypes.STRING,
@@ -10,9 +10,9 @@ const Student = sequelize.define(
     },
   },
   {
-    tableName: "students",
+    tableName: "rooms",
     timestamps: false,
   }
 );
 
-module.exports = Student;
+module.exports = Room;
