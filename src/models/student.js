@@ -8,7 +8,20 @@ const Student = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    n1: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    n2: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    n3: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
+
   {
     tableName: "students",
     timestamps: false,

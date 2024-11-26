@@ -18,9 +18,9 @@ async function createStudent(name) {
   }
 }
 
-async function updateStudent(id, name) {
+async function updateStudent(id, name, n1, n2, n3) {
   try {
-    const [updatedRows] = await Student.update({ name }, { where: { id } });
+    const [updatedRows] = await Student.update({ name, n1, n2, n3 }, { where: { id } });
     if (updatedRows === 0) {
       throw new Error("Estudante não encontrado");
     }

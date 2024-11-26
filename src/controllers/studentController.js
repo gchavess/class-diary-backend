@@ -24,14 +24,26 @@ async function createStudent(req, res) {
 
 async function updateStudent(req, res) {
   const { id } = req.params;
-  const { name } = req.body;
+  const { name, n1, n2, n3 } = req.body;
 
   if (!name) {
     return res.status(400).json({ message: "O campo 'name' é obrigatório" });
   }
 
+  if (!n1) {
+    return res.status(400).json({ message: "O campo 'n1' é obrigatório" });
+  }
+
+  if (!n2) {
+    return res.status(400).json({ message: "O campo 'n2' é obrigatório" });
+  }
+
+  if (!n3) {
+    return res.status(400).json({ message: "O campo 'n3' é obrigatório" });
+  }
+
   try {
-    const updatedStudent = await studentService.updateStudent(id, name);
+    const updatedStudent = await studentService.updateStudent(id, name, n1, n2, n3);
     res.json(updatedStudent);
   } catch (error) {
     res.status(404).json({ message: error.message });
