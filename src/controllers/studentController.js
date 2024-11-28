@@ -10,12 +10,26 @@ async function getStudents(req, res) {
 }
 
 async function createStudent(req, res) {
-  const { name } = req.body;
+  const { name, n1, n2, n3 } = req.body;
+
   if (!name) {
     return res.status(400).json({ message: "O campo 'name' é obrigatório" });
   }
+
+  if (!n1) {
+    return res.status(400).json({ message: "O campo 'n1' é obrigatório" });
+  }
+
+  if (!n2) {
+    return res.status(400).json({ message: "O campo 'n2' é obrigatório" });
+  }
+
+  if (!n3) {
+    return res.status(400).json({ message: "O campo 'n3' é obrigatório" });
+  }
+
   try {
-    const newStudent = await studentService.createStudent(name);
+    const newStudent = await studentService.createStudent(name, n1, n2, n3);
     res.status(201).json(newStudent);
   } catch (error) {
     res.status(500).json({ message: "Erro ao criar estudante" });
@@ -43,7 +57,13 @@ async function updateStudent(req, res) {
   }
 
   try {
-    const updatedStudent = await studentService.updateStudent(id, name, n1, n2, n3);
+    const updatedStudent = await studentService.updateStudent(
+      id,
+      name,
+      n1,
+      n2,
+      n3
+    );
     res.json(updatedStudent);
   } catch (error) {
     res.status(404).json({ message: error.message });

@@ -9,9 +9,9 @@ async function getAllStudents() {
   }
 }
 
-async function createStudent(name) {
+async function createStudent(name, n1, n2, n3) {
   try {
-    return await Student.create({ name });
+    return await Student.create({ name, n1, n2, n3 });
   } catch (error) {
     console.error("Erro ao criar estudante:", error);
     throw error;
@@ -20,7 +20,10 @@ async function createStudent(name) {
 
 async function updateStudent(id, name, n1, n2, n3) {
   try {
-    const [updatedRows] = await Student.update({ name, n1, n2, n3 }, { where: { id } });
+    const [updatedRows] = await Student.update(
+      { name, n1, n2, n3 },
+      { where: { id } }
+    );
     if (updatedRows === 0) {
       throw new Error("Estudante não encontrado");
     }
