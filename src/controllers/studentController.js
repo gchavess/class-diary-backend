@@ -2,7 +2,8 @@ const studentService = require("../services/studentService");
 
 async function getStudents(req, res) {
   try {
-    const students = await studentService.getAllStudents();
+    const { roomId } = req.query;
+    const students = await studentService.getAllStudents(roomId);
     res.json(students);
   } catch (error) {
     res.status(500).json({ message: "Erro ao buscar estudantes" });
@@ -10,7 +11,7 @@ async function getStudents(req, res) {
 }
 
 async function createStudent(req, res) {
-  const { name, n1, n2, n3 } = req.body;
+  const { name, n1, n2, n3, roomId } = req.body;
 
   if (!name) {
     return res.status(400).json({ message: "O campo 'name' é obrigatório" });
@@ -28,8 +29,18 @@ async function createStudent(req, res) {
     return res.status(400).json({ message: "O campo 'n3' é obrigatório" });
   }
 
+  if (!roomId) {
+    return res.status(400).json({ message: "O campo 'roomId' é obrigatório" });
+  }
+
   try {
-    const newStudent = await studentService.createStudent(name, n1, n2, n3);
+    const newStudent = await studentService.createStudent(
+      name,
+      n1,
+      n2,
+      n3,
+      roomId
+    );
     res.status(201).json(newStudent);
   } catch (error) {
     res.status(500).json({ message: "Erro ao criar estudante" });

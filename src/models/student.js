@@ -20,6 +20,16 @@ const Student = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    roomId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "rooms",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "CASCADE",
+    },
   },
 
   {

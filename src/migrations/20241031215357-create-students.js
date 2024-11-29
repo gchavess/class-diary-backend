@@ -25,6 +25,16 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      roomId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "rooms",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
+      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,

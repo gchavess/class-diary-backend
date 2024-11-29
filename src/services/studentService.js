@@ -1,17 +1,18 @@
 const Student = require("../models/student");
 
-async function getAllStudents() {
+async function getAllStudents(roomId) {
   try {
-    return await Student.findAll();
+    const whereClause = roomId ? { where: { roomId } } : {};
+    return await Student.findAll(whereClause);
   } catch (error) {
     console.error("Erro ao buscar estudantes:", error);
     throw error;
   }
 }
 
-async function createStudent(name, n1, n2, n3) {
+async function createStudent(name, n1, n2, n3, roomId) {
   try {
-    return await Student.create({ name, n1, n2, n3 });
+    return await Student.create({ name, n1, n2, n3, roomId });
   } catch (error) {
     console.error("Erro ao criar estudante:", error);
     throw error;
