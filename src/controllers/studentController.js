@@ -1,12 +1,33 @@
 const studentService = require("../services/studentService");
+const callStudentService = require("../services/callStudentService");
 
 async function getStudents(req, res) {
   try {
-    const { roomId } = req.query;
+    const { roomId, date } = req.query;
+
+    if (!date) {
+      return res.status(400).json({ message: "A data é obrigatória" });
+    }
+
     const students = await studentService.getAllStudents(roomId);
-    res.json(students);
+
+    const studentsWithCalls = await Promise.all(
+      students.map(async (student) => {
+        const calls = await callStudentService.getCallsByStudentAndDate(
+          student.id,
+          date
+        );
+        return {
+          ...student.dataValues,
+          calls,
+        };
+      })
+    );
+
+    res.json(studentsWithCalls);
   } catch (error) {
-    res.status(500).json({ message: "Erro ao buscar estudantes" });
+    console.error("Erro ao buscar estudantes com chamadas:", error);
+    res.status(500).json({ message: "Erro ao buscar estudantes com chamadas" });
   }
 }
 

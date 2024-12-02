@@ -9,6 +9,20 @@ async function getAllCallStudents() {
   }
 }
 
+async function getCallsByStudentAndDate(studentId, date) {
+  try {
+    return await CallStudent.findAll({
+      where: {
+        student_id: studentId,
+        date,
+      },
+    });
+  } catch (error) {
+    console.error("Erro ao buscar chamadas:", error);
+    throw error;
+  }
+}
+
 async function createCallStudent(date, student_id, present) {
   try {
     return await CallStudent.create({ date, student_id, present });
@@ -52,4 +66,5 @@ module.exports = {
   createCallStudent,
   updateCallStudent,
   deleteCallStudent,
+  getCallsByStudentAndDate,
 };

@@ -12,18 +12,10 @@ async function getCallStudents(req, res) {
 async function createCallStudent(req, res) {
   const { date, student_id, present } = req.body;
 
-  if (!date) {
-    return res.status(400).json({ message: "O campo 'date' é obrigatório" });
-  }
-
   if (!student_id) {
     return res
       .status(400)
       .json({ message: "O campo 'student_id' é obrigatório" });
-  }
-
-  if (!present) {
-    return res.status(400).json({ message: "O campo 'present' é obrigatório" });
   }
 
   try {
