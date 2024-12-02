@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const studentRoutes = require("./src/routes/studentRoutes");
 const userRoutes = require("./src/routes/userRoutes");
 const roomRoutes = require("./src/routes/roomRoutes");
+const callStudentRoutes = require("./src/routes/callStudentRoutes");
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.listen(PORT, () => {
 app.use("/api/student", studentRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/room", roomRoutes);
+app.use("/api/call_student", callStudentRoutes);
 
 app.use((req, res, next) => {
   res.status(404).json({ message: "Rota não encontrada" });
