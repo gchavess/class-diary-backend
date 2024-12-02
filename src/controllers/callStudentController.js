@@ -44,7 +44,7 @@ async function updateCallStudent(req, res) {
       .json({ message: "O campo 'student_id' é obrigatório" });
   }
 
-  if (!present) {
+  if (present === null || present === undefined) {
     return res.status(400).json({ message: "O campo 'present' é obrigatório" });
   }
 
